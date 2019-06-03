@@ -1,0 +1,147 @@
+#!/bin/bash
+array_contains () { 
+	arr=("$1[@]")
+	local seeking=$2
+	local in=1
+	for element in "${!arr}" 
+	do
+		if [[ $element == $seeking ]]
+		then
+			in=0
+			break
+		fi
+	done
+	return $in
+}
+insertingGeneratedTextFiles () {
+	echo "-----> Inserting Generated New Script Data"
+	sed -i -r 's!(jsonURL|atlasURL):[ ]*("|'"'"')assets/([^"'"'"']*)("|'"'"')!\1: ASSETLOADER["\3"]!g' dist/main.js
+	sed -i 's!"assets/!"!g' dist/main.js
+	grep -oh 'ASSETLOADER\["[^"]*"\]' dist/main.js | sed -e 's/.*"\(.*\)".*/allAssets[\'"'\1'"']='"'"'text'"'"';/' >> dist/spineassets.txt
+	grep -oh 'ASSETLOADER\["[^"]*.json"\]' dist/main.js | sed -e 's/.*"\(.*\).json".*/allAssets[\'"'\1.png'"']='"'"'blob'"'"';/' >> dist/spineassets.txt
+
+	value=$(<assets.txt)
+	value2=$(<functions.txt)
+	value3=$(<scenes.txt)
+	value4=$(<spineassets.txt)
+	value=$(echo "$value4$value" | tr -d '[:space:]')
+	startPos=($(sed -n "/*START*/=" dist/run.js))
+	sed -i "${startPos}a$value" dist/run.js
+
+	unpack=($(sed -n "/this.load.pack(/=" dist/main.js))
+	sed -i "${unpack}s/.*//" dist/main.js
+	sed -i "${unpack}i $value2" dist/main.js
+	createStart=($(sed -n '/create()/{N;/{/=}' dist/main.js))
+
+	sed -i "${createStart}a $value3" dist/main.js
+	sed -i "${createStart}a"'PLAT.sendMessage("DRRS_HIDE_LOADING_SCREEN", {});' dist/main.js
+	sed -i "${createStart}a"'PLAT.subscribe("DRRS_ON_APP_PAUSE", ()=>{if (AppSleep) AppSleep()});' dist/main.js
+	sed -i "${createStart}a"'PLAT.subscribe("DRRS_ON_APP_RESUME", ()=>{if (AppWake) AppWake()});' dist/main.js
+}
+refactoringMainScript () {
+	echo "-----> Refactoring Main Script"
+	pos=( $( sed -n -f - dist/main.js <<END_SED
+        /window.addEventListener('load', function() {/,/^});/{
+                /window.addEventListener('load', function() {/=
+                /^});/=
+        }
+END_SED
+) )
+
+	echo "start = " ${pos[0]}
+	echo "end   = " ${pos[1]}
+
+	sed -i "${pos[0]}s/.*/function start(assets, platform){/" dist/main.js
+	sed -i "${pos[1]}s/.*/};/" dist/main.js
+	sed -i "${pos[0]}a ASSETLOADER = assets;\nPLAT = platform;" dist/main.js
+	sed -i "${pos[0]}i var ASSETLOADER = [];\nvar PLAT;" dist/main.js
+}
+readJSON() {
+	echo "-----> Reading JSON Files"
+	JSONFILES=$(find WebContent/assets -maxdepth 1 -type f \( -iname "*.json" \)) 
+	for file in $JSONFILES
+	do
+		python template/build/gitclone/Template/jsonparser.py $file
+	done
+}
+cloneTemplate () {
+	echo "-----> Cloning App Template"
+	mkdir -p template/build/gitclone
+	cd template/build/gitclone
+	git clone /var/git-repos/ramasjang-template/ramasjang-template.git || (cd template && sudo git pull)
+	cd ../../..
+	cp template/build/gitclone/Template/run.js dist/
+	cp template/build/gitclone/Template/bootstrap.js dist/
+	cp template/build/gitclone/Template/config.json dist/
+	cp template/build/gitclone/Template/phaser.min.js dist/lib/
+	cp template/build/gitclone/Template/SpineWebGLPlugin.js dist/lib/
+}
+listScriptFiles () {
+	echo "-----> Listing Script Files"
+	declare -A FILEMAP
+	for file in $FILES
+	do
+		BASE=$(basename $file)
+		EXTENDS=false
+		while IFS= read line
+		do
+			if [[ $line =~ extends(.*) ]] 
+			then
+				CLASS=$(echo "${BASH_REMATCH[1]//{}" | tr -d '[:space:]')
+				EXTENDS=true
+			fi
+
+		done <"$file"
+		if [ "$EXTENDS" != true ]
+		then
+			CLASS="NONE"
+		fi
+		FILEMAP[${BASE%.*}]=$CLASS
+		done
+
+	done
+
+	declare -a DISTEXTENDS=()
+	for key in "${!FILEMAP[@]}"
+	do
+		if [[ ! ${FILEMAP[$key]} =~ Phaser.*|NONE ]]
+		then
+		array_contains DISTEXTENDS "${FILEMAP[$key]}"  && : || DISTEXTENDS+=(${FILEMAP[$key]})    # no
+		fi
+	done
+
+	for key2 in "${!FILEMAP[@]}"
+	do
+		array_contains DISTEXTENDS "$key2"  && : || DISTEXTENDS+=($key2)    # no
+	done
+	PREFIX="uglifyjs"
+	EFIX="-o dist/lib/all.js"
+	for txt in "${DISTEXTENDS[@]}"
+	do
+		PREFIX="$PREFIX src/$txt.js "
+	done
+	$PREFIX$EFIX
+}
+copyContent () {
+	echo "-----> Copying Contents"
+	cp -R WebContent/assets/* dist/assets/
+	cp WebContent/main.js dist/
+	npm list -g | grep uglify-es || npm install uglify-es -g
+	find WebContent/assets/{scripts,scenes} -name '*.js' -exec cp '{}' src/ \;
+}
+createStructure () {
+	echo "-----> Creating Structure"
+	mkdir -p dist/{assets,lib}
+	mkdir -p src
+}
+init () { 
+	createStructure
+	copyContent
+	listScriptFiles
+	cloneTemplate
+	readJSON
+	refactoringMainScript
+	insertingGeneratedTextFiles
+	uglifyjs dist/main.js -o dist/main.js
+}
+init

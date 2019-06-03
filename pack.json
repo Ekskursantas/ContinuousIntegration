@@ -1,0 +1,386 @@
+{
+  "section1": {"files": [
+    {
+      "type": "script",
+      "key": "CarFunctions",
+      "url": "assets/scripts/traffic/CarManager.js"
+    },
+    {
+      "type": "script",
+      "key": "CarNavigation",
+      "url": "assets/scripts/traffic/CarObject.js"
+    },
+    {
+      "type": "sceneFile",
+      "key": "Level2",
+      "url": "assets/scenes/levels/level2/Level2.js"
+    },
+    {
+      "type": "sceneFile",
+      "key": "Level1",
+      "url": "assets/scenes/levels/level1/Level1.js"
+    },
+    {
+      "type": "script",
+      "key": "Agent",
+      "url": "assets/scripts/pathing/NavigationAgent.js"
+    },
+    {
+      "type": "script",
+      "key": "SignChecks",
+      "url": "assets/scripts/traffic/SignChecks.js"
+    },
+    {
+      "type": "script",
+      "key": "Sign",
+      "url": "assets/scripts/traffic/Sign.js"
+    },
+    {
+      "type": "script",
+      "key": "SignPosition",
+      "url": "assets/scripts/traffic/SignPosition.js"
+    },
+    {
+      "type": "script",
+      "key": "SignHighlighter",
+      "url": "assets/scripts/traffic/SignHighlighter.js"
+    },
+    {
+      "type": "script",
+      "key": "TrafficLightFunctions",
+      "url": "assets/scripts/traffic/TrafficLightFunctions.js"
+    },
+    {
+      "type": "script",
+      "key": "TrafficLightObject",
+      "url": "assets/scripts/traffic/TrafficLightObject.js"
+    },
+    {
+      "type": "multiatlas",
+      "key": "allSpritesAtlas",
+      "url": "assets/atlas/allSpritesAtlas.json",
+      "path": "assets/atlas"
+    },
+    {
+      "type": "sceneFile",
+      "key": "SLVTest",
+      "url": "assets/scenes/testLevels/SLVTest.js"
+    },
+    {
+      "type": "script",
+      "key": "PathCreation",
+      "url": "assets/scripts/pathing/PathCreation.js"
+    },
+    {
+      "type": "script",
+      "key": "LightCrossingObject",
+      "url": "assets/scripts/traffic/LightCrossingObject.js"
+    },
+    {
+      "type": "script",
+      "key": "IsometricFactories",
+      "url": "assets/scripts/levelObjects/IsometricFactories.js"
+    },
+    {
+      "type": "script",
+      "key": "AudioManager",
+      "url": "assets/scripts/audio/AudioManager.js"
+    },
+    {
+      "type": "script",
+      "key": "RobotObject",
+      "url": "assets/scripts/levelObjects/RobotObject.js"
+    },
+    {
+      "type": "script",
+      "key": "TriggeredObject",
+      "url": "assets/scripts/levelObjects/TriggeredObject.js"
+    },
+    {
+      "type": "script",
+      "key": "SweeperObject",
+      "url": "assets/scripts/levelObjects/SweeperObject.js"
+    },
+    {
+      "type": "script",
+      "key": "GameManager",
+      "url": "assets/scripts/sceneControl/GameManager.js"
+    },
+    {
+      "type": "audioSprite",
+      "key": "allSounds",
+      "url": ["assets/audio/audioSprites/allSounds.mp3"],
+      "jsonURL": "assets/audio/audioSprites/allSounds.json"
+    },
+    {
+      "type": "animation",
+      "key": "animations",
+      "url": "assets/atlas/animations.json"
+    },
+    {
+      "type": "script",
+      "key": "Decoration",
+      "url": "assets/scripts/decoration/Decoration.js"
+    },
+    {
+      "type": "script",
+      "key": "DecorationMenu",
+      "url": "assets/scripts/decoration/DecorationMenu.js"
+    },
+    {
+      "type": "sceneFile",
+      "key": "Hangar",
+      "url": "assets/scenes/hangar/Hangar.js"
+    },
+    {
+      "type": "script",
+      "key": "Util",
+      "url": "assets/scripts/util/Util.js"
+    },
+    {
+      "type": "script",
+      "key": "DecorationDragManager",
+      "url": "assets/scripts/decoration/DecorationDragManager.js"
+    },
+    {
+      "type": "script",
+      "key": "SaveLoad",
+      "url": "assets/scripts/progression/SaveLoad.js"
+    },
+    {
+      "type": "script",
+      "key": "Levels",
+      "url": "assets/scripts/util/Levels.js"
+    },
+    {
+      "type": "sceneFile",
+      "key": "Map",
+      "url": "assets/scenes/map/Map.js"
+    },
+    {
+      "type": "script",
+      "key": "Buttons",
+      "url": "assets/scripts/ui/Buttons.js"
+    },
+    {
+      "type": "script",
+      "key": "TalkingHeads",
+      "url": "assets/scripts/cinematic/TalkingHeads.js"
+    },
+    {
+      "type": "script",
+      "key": "Layers",
+      "url": "assets/scripts/util/Layers.js"
+    },
+    {
+      "type": "script",
+      "key": "TalkingSequences",
+      "url": "assets/scripts/cinematic/TalkingSequences.js"
+    },
+    {
+      "type": "script",
+      "key": "HangarStates",
+      "url": "assets/scripts/util/GameStates.js"
+    },
+    {
+      "type": "script",
+      "key": "GoalArrow",
+      "url": "assets/scripts/levelObjects/GoalArrow.js"
+    },
+    {
+      "type": "script",
+      "key": "SpawnTurnBlocker",
+      "url": "assets/scripts/pathing/SpawnBlocker.js"
+    },
+    {
+      "type": "sceneFile",
+      "key": "PathRiderTest",
+      "url": "assets/scenes/testLevels/PathRiderTest.js"
+    },
+    {
+      "type": "script",
+      "key": "PathRider",
+      "url": "assets/scripts/pathing/PathRider.js"
+    },
+    {
+      "type": "script",
+      "key": "Colors",
+      "url": "assets/scripts/util/Colors.js"
+    },
+    {
+      "type": "image",
+      "key": "Hangar_BG",
+      "url": "assets/atlas/backgroundImages/Hangar_BG.jpg",
+      "normalMap": ""
+    },
+    {
+      "type": "image",
+      "key": "Hangar_Map",
+      "url": "assets/atlas/backgroundImages/Hangar_Map.jpg",
+      "normalMap": ""
+    },
+    {
+      "type": "script",
+      "key": "Tutorial",
+      "url": "assets/scripts/cinematic/Tutorial.js"
+    },
+    {
+      "type": "script",
+      "key": "DecorationDB",
+      "url": "assets/scripts/decoration/DecorationDB.js"
+    },
+    {
+      "type": "sceneFile",
+      "key": "Title",
+      "url": "assets/scenes/title/Title.js"
+    },
+    {
+      "type": "script",
+      "key": "LinkedSpritesMasksFrames",
+      "url": "assets/scripts/util/LinkedSpritesMasksFrames.js"
+    },
+    {
+      "type": "sceneFile",
+      "key": "Level3",
+      "url": "assets/scenes/levels/level3/Level3.js"
+    },
+    {
+      "type": "image",
+      "key": "Map3",
+      "url": "assets/atlas/backgroundImages/Map3.jpg",
+      "normalMap": ""
+    },
+    {
+      "type": "image",
+      "key": "Map4",
+      "url": "assets/atlas/backgroundImages/Map4.jpg",
+      "normalMap": ""
+    },
+    {
+      "type": "image",
+      "key": "Map5",
+      "url": "assets/atlas/backgroundImages/Map5.jpg",
+      "normalMap": ""
+    },
+    {
+      "type": "image",
+      "key": "Map6",
+      "url": "assets/atlas/backgroundImages/Map6.jpg",
+      "normalMap": ""
+    },
+    {
+      "type": "image",
+      "key": "Map7",
+      "url": "assets/atlas/backgroundImages/Map7.jpg",
+      "normalMap": ""
+    },
+    {
+      "type": "image",
+      "key": "Map8",
+      "url": "assets/atlas/backgroundImages/Map8.jpg",
+      "normalMap": ""
+    },
+    {
+      "type": "image",
+      "key": "Map9",
+      "url": "assets/atlas/backgroundImages/Map9.jpg",
+      "normalMap": ""
+    },
+    {
+      "type": "script",
+      "key": "SignCrossingConnector",
+      "url": "assets/scripts/traffic/SignCrossingConnector.js"
+    },
+    {
+      "type": "sceneFile",
+      "key": "Level4",
+      "url": "assets/scenes/levels/level4/Level4.js"
+    },
+    {
+      "type": "script",
+      "key": "CollisionChecks",
+      "url": "assets/scripts/traffic/CollisionChecks.js"
+    },
+    {
+      "type": "sceneFile",
+      "key": "Level5",
+      "url": "assets/scenes/levels/level5/Level5.js"
+    },
+    {
+      "type": "sceneFile",
+      "key": "Level6",
+      "url": "assets/scenes/levels/level6/Level6.js"
+    },
+    {
+      "type": "sceneFile",
+      "key": "Level7",
+      "url": "assets/scenes/levels/level7/Level7.js"
+    },
+    {
+      "type": "sceneFile",
+      "key": "Level8",
+      "url": "assets/scenes/levels/level8/Level8.js"
+    },
+    {
+      "type": "image",
+      "key": "Map1",
+      "url": "assets/atlas/backgroundImages/Map1.jpg",
+      "normalMap": ""
+    },
+    {
+      "type": "image",
+      "key": "Map2",
+      "url": "assets/atlas/backgroundImages/Map2.jpg",
+      "normalMap": ""
+    },
+    {
+      "type": "sceneFile",
+      "key": "Level9",
+      "url": "assets/scenes/levels/level9/Level9.js"
+    },
+    {
+      "type": "script",
+      "key": "ParticleZone",
+      "url": "assets/scripts/decoration/ParticleZone.js"
+    },
+    {
+      "type": "script",
+      "key": "AudioManager",
+      "url": "assets/scripts/audio/AudioManager.js"
+    },
+    {
+      "type": "sceneFile",
+      "key": "Intro",
+      "url": "assets/scenes/intro/Intro.js"
+    },
+    {
+      "type": "image",
+      "key": "Intromap",
+      "url": "assets/atlas/backgroundImages/Intromap.jpg",
+      "normalMap": ""
+    },
+    {
+      "type": "script",
+      "key": "IntroCinematic",
+      "url": "assets/scripts/cinematic/IntroCinematic.js"
+    },
+    {
+      "type": "script",
+      "key": "StateSequence",
+      "url": "assets/scripts/cinematic/StateSequence.js"
+    },
+    {
+      "type": "audioSprite",
+      "key": "allTalk",
+      "url": ["assets/audio/audioSprites/allTalk.mp3"],
+      "jsonURL": "assets/audio/audioSprites/allTalk.json"
+    }
+  ]},
+  "meta": {
+    "generated": "1558426487035",
+    "app": "Phaser Editor",
+    "url": "https://phasereditor2d.com",
+    "version": "1.0",
+    "copyright": "Arian Fornaris (c) 2015,2018"
+  }
+}
